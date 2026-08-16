@@ -1,0 +1,201 @@
+{
+  "decisions": {
+    "Reporting Period": "approved",
+    "Narrative Summary and Analysis": "approved",
+    "Reaction / Adverse Event Analysis": "approved",
+    "Summary Analysis of Cases": "approved",
+    "Serious Cases / 15\u2011Day Alerts": "approved",
+    "Trends and Important Observations": "approved"
+  },
+  "stats": {
+    "start_date": "1970-01-01",
+    "end_date": "1970-01-01",
+    "total_cases": 1024,
+    "serious_cases": 1067,
+    "non_serious_cases": -43,
+    "top_reactions": [
+      [
+        "Acute kidney injury",
+        22
+      ],
+      [
+        "Drug ineffective",
+        12
+      ],
+      [
+        "Cerebral haemorrhage",
+        7
+      ],
+      [
+        "Hyponatraemia",
+        6
+      ],
+      [
+        "Cholestasis",
+        6
+      ],
+      [
+        "Hypokalaemia",
+        6
+      ],
+      [
+        "Hepatic cytolysis",
+        5
+      ],
+      [
+        "Drug interaction",
+        5
+      ],
+      [
+        "Joint swelling",
+        5
+      ],
+      [
+        "Muscle spasms",
+        4
+      ]
+    ],
+    "top_serious_reactions": [
+      [
+        "Acute kidney injury",
+        22
+      ],
+      [
+        "Drug ineffective",
+        12
+      ],
+      [
+        "Cerebral haemorrhage",
+        7
+      ],
+      [
+        "Hyponatraemia",
+        6
+      ],
+      [
+        "Cholestasis",
+        6
+      ],
+      [
+        "Hypokalaemia",
+        6
+      ],
+      [
+        "Hepatic cytolysis",
+        5
+      ],
+      [
+        "Drug interaction",
+        5
+      ],
+      [
+        "Joint swelling",
+        5
+      ],
+      [
+        "Muscle spasms",
+        4
+      ]
+    ],
+    "age_groups": [
+      [
+        "0\u201117",
+        16
+      ],
+      [
+        "18\u201129",
+        11
+      ],
+      [
+        "30\u201139",
+        18
+      ],
+      [
+        "40\u201149",
+        36
+      ],
+      [
+        "50\u201159",
+        108
+      ],
+      [
+        "60\u201169",
+        221
+      ],
+      [
+        "70\u201179",
+        304
+      ],
+      [
+        "80+",
+        263
+      ]
+    ],
+    "sex_counts": {
+      "female": 520,
+      "male": 518
+    },
+    "country_counts": [
+      [
+        "eu",
+        356
+      ],
+      [
+        "united kingdom",
+        285
+      ],
+      [
+        "france",
+        189
+      ],
+      [
+        "canada",
+        58
+      ],
+      [
+        "italy",
+        53
+      ],
+      [
+        "germany",
+        43
+      ],
+      [
+        "spain",
+        27
+      ],
+      [
+        "poland",
+        21
+      ],
+      [
+        "portugal",
+        10
+      ],
+      [
+        "belgium",
+        4
+      ],
+      [
+        "IE",
+        4
+      ],
+      [
+        "united states",
+        4
+      ],
+      [
+        "RO",
+        2
+      ],
+      [
+        "sweden",
+        2
+      ],
+      [
+        "SA",
+        2
+      ]
+    ]
+  }
+}

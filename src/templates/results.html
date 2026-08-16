@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - GenAR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <h1>GenAR</h1>
+        <p>PADER Report Generated</p>
+    </header>
+
+    <main class="container">
+        <div class="results-card">
+            <div class="success-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Analysis Complete</h2>
+            <p>Your PADER report and associated files have been successfully generated.</p>
+            
+            <div class="stats-box">
+                <h3>Summary Statistics</h3>
+                <ul class="stats-list">
+                    <li><strong>Total Cases:</strong> {{ stats.get('total_cases', 0) }}</li>
+                    <li><strong>Serious Cases:</strong> {{ stats.get('serious_cases', 0) }}</li>
+                    <li><strong>Reporting Period:</strong> {{ stats.get('period_start', 'N/A') }} to {{ stats.get('period_end', 'N/A') }}</li>
+                </ul>
+            </div>
+            
+            <div class="downloads-grid">
+                <a href="/download/{{ session_id }}/report.md" class="btn btn-outline">
+                    📄 Markdown Report
+                </a>
+                <a href="/download/{{ session_id }}/report.html" class="btn btn-outline">
+                    🌐 HTML Report
+                </a>
+                <a href="/download/{{ session_id }}/cases.csv" class="btn btn-outline">
+                    📊 Case Listing (CSV)
+                </a>
+                <a href="/download/{{ session_id }}/run_log.json" class="btn btn-outline">
+                    ⚙️ Run Log (JSON)
+                </a>
+            </div>
+            
+            <div class="actions-footer">
+                <a href="/" class="btn btn-primary">Start New Analysis</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAR PADER Pipeline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <h1>GenAR</h1>
+        <p>PADER Safety Reporting Pipeline</p>
+    </header>
+
+    <main class="container">
+        <div class="upload-card">
+            <h2>Upload Data for Analysis</h2>
+            <p>Select a CSV or Excel file containing adverse event data.</p>
+            
+            <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p class="drop-text">Drag & Drop file here or <span class="browse-link">Browse</span></p>
+                        <p class="file-hint">Supports .csv, .xlsx</p>
+                    </div>
+                    <input type="file" id="fileInput" name="file" accept=".csv, .xlsx, .xls" required style="display: none;">
+                </div>
+                
+                <div id="fileInfo" class="file-info hidden">
+                    <span id="fileName"></span>
+                    <button type="button" id="removeFile" class="btn-text">Remove</button>
+                </div>
+                
+                <button type="submit" id="uploadBtn" class="btn btn-primary btn-block" disabled>
+                    <span class="btn-text-content">Analyze Data</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadForm = document.getElementById('uploadForm');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const removeFile = document.getElementById('removeFile');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const btnTextContent = document.querySelector('.btn-text-content');
+        const loader = document.querySelector('.loader');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-active');
+        });
+
+        ['dragleave', 'dragend'].forEach(type => {
+            dropZone.addEventListener(type, () => {
+                dropZone.classList.remove('drag-active');
+            });
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-active');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        fileInput.addEventListener('change', handleFileSelect);
+
+        removeFile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fileInput.value = '';
+            handleFileSelect();
+        });
+
+        function handleFileSelect() {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+                fileInfo.classList.remove('hidden');
+                uploadBtn.disabled = false;
+            } else {
+                fileInfo.classList.add('hidden');
+                uploadBtn.disabled = true;
+            }
+        }
+
+        uploadForm.addEventListener('submit', () => {
+            uploadBtn.disabled = true;
+            btnTextContent.textContent = 'Processing...';
+            loader.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

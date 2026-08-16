@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-in-the-Loop Review - GenAR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <h1>GenAR</h1>
+        <p>Human-in-the-Loop Review</p>
+    </header>
+
+    <main class="container">
+        <div class="review-header">
+            <h2>Review Evidence Packets</h2>
+            <p>Please review each section. The report will only be generated for approved sections.</p>
+            <div class="progress-container">
+                <div class="progress-text" id="progressText">0/6 sections reviewed</div>
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            </div>
+        </div>
+
+        <div class="grid cards-grid">
+            {% for packet in packets %}
+            <div class="card pending" data-section="{{ packet.name }}">
+                <div class="card-header">
+                    <h3>{{ packet.title }}</h3>
+                    <div class="status-icon"></div>
+                </div>
+                <div class="card-body">
+                    <ul class="data-list">
+                        {% for key, val in packet.data.items() %}
+                        <li><strong>{{ key }}:</strong> {{ val }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success btn-approve" data-section="{{ packet.name }}">
+                        ✓ Approve
+                    </button>
+                    <button class="btn btn-danger btn-flag" data-section="{{ packet.name }}">
+                        ✗ Flag
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="review-actions">
+            <button id="submitReviewBtn" class="btn btn-primary btn-large" disabled>
+                Submit Review & Generate Report
+            </button>
+        </div>
+    </main>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const decisions = {};
+        let reviewedCount = 0;
+        const totalCount = cards.length;
+        
+        const progressText = document.getElementById('progressText');
+        const progressFill = document.getElementById('progressFill');
+        const submitBtn = document.getElementById('submitReviewBtn');
+        
+        document.querySelectorAll('.btn-approve').forEach(btn => {
+            btn.addEventListener('click', (e) => handleDecision(e, 'approved'));
+        });
+        
+        document.querySelectorAll('.btn-flag').forEach(btn => {
+            btn.addEventListener('click', (e) => handleDecision(e, 'flagged'));
+        });
+        
+        function handleDecision(e, decision) {
+            const section = e.target.dataset.section;
+            const card = document.querySelector(`.card[data-section="${section}"]`);
+            
+            if (!decisions[section]) {
+                reviewedCount++;
+            }
+            
+            decisions[section] = decision;
+            
+            card.classList.remove('pending', 'approved', 'flagged');
+            card.classList.add(decision);
+            
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            progressText.textContent = `${reviewedCount}/${totalCount} sections reviewed`;
+            progressFill.style.width = `${(reviewedCount / totalCount) * 100}%`;
+            
+            if (reviewedCount === totalCount) {
+                submitBtn.disabled = false;
+            }
+        }
+        
+        submitBtn.addEventListener('click', async () => {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Generating Report...';
+            
+            try {
+                const response = await fetch('/review/{{ session_id }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(decisions)
+                });
+                
+                const data = await response.json();
+                if (data.status === 'success') {
+                    window.location.href = data.redirect;
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred during submission.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Review & Generate Report';
+            }
+        });
+    </script>
+</body>
+</html>
