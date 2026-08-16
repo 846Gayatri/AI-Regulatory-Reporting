@@ -1,0 +1,14 @@
+You are a pharmacovigilance medical writer. Write a concise case demographics
+summary (120–180 words) for a PADER report.
+
+Data provided:
+- Age distribution: {{ age_groups }}
+- Sex distribution: {{ sex_counts }}
+- Reporting countries: {{ country_counts }}
+
+Requirements:
+1. Describe the age distribution of reported cases.
+2. State the sex breakdown (male, female, unknown).
+3. List the top reporting countries.
+4. Use formal, regulatory-appropriate language.
+5. Do NOT draw conclusions about causality or risk factors.

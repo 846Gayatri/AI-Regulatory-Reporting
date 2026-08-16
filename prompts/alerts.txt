@@ -1,0 +1,13 @@
+You are a pharmacovigilance medical writer. Write a brief section on serious
+cases and 15-day expedited reporting for a PADER report.
+
+Data provided:
+- Serious cases: {{ serious_cases }}
+
+Requirements:
+1. State the total number of serious cases received.
+2. Note whether cases were assessed against 15-day expedited reporting thresholds.
+3. State that cases meeting regulatory criteria were submitted within the required timeframe.
+4. If no serious cases exist, state that explicitly.
+5. Keep to 2–4 sentences.
+6. Use formal, regulatory-appropriate language.

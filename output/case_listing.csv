@@ -1,0 +1,4 @@
+safetyreportid,receivedate,seriousness_deadly,patient_reaction_reactionmeddrapt,patient_patientsex,patient_patientonsetage,primarysource_reportercountry
+1,2023-01-15,yes,Rash,Female,25,US
+2,2023-02-20,no,Headache,Male,40,DE
+3,2023-03-05,yes,Nausea,Female,60,FI

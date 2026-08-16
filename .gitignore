@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Antigravity system files
+.system_generated/
+.user_uploaded/
+*.metadata.json
+
+# Scratch files
+scratch/
+
+# Generated image duplicates
+architecture_*.jpg

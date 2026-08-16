@@ -1,0 +1,93 @@
+{
+  "validation": {
+    "start_date": "2023-01-15",
+    "end_date": "2023-03-05",
+    "total_cases": 3,
+    "serious_cases": 2,
+    "non_serious_cases": 1,
+    "top_reactions": [
+      [
+        "Rash",
+        1
+      ],
+      [
+        "Headache",
+        1
+      ],
+      [
+        "Nausea",
+        1
+      ]
+    ],
+    "top_serious_reactions": [
+      [
+        "Rash",
+        1
+      ],
+      [
+        "Nausea",
+        1
+      ]
+    ],
+    "age_groups": [
+      [
+        "0\u201117",
+        0
+      ],
+      [
+        "18\u201129",
+        1
+      ],
+      [
+        "30\u201139",
+        0
+      ],
+      [
+        "40\u201149",
+        1
+      ],
+      [
+        "50\u201159",
+        0
+      ],
+      [
+        "60\u201169",
+        1
+      ],
+      [
+        "70\u201179",
+        0
+      ],
+      [
+        "80+",
+        0
+      ]
+    ],
+    "sex_counts": {
+      "Female": 2,
+      "Male": 1
+    },
+    "country_counts": [
+      [
+        "US",
+        1
+      ],
+      [
+        "DE",
+        1
+      ],
+      [
+        "FI",
+        1
+      ]
+    ]
+  },
+  "review_log": {
+    "Reporting Period": "approved",
+    "Narrative Summary and Analysis": "approved",
+    "Summary Analysis of Cases": "approved",
+    "Reaction / Adverse Event Analysis": "approved",
+    "Serious Cases / 15\u2011Day Alerts": "approved",
+    "Trends and Important Observations": "approved"
+  }
+}

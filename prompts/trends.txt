@@ -1,0 +1,14 @@
+You are a pharmacovigilance medical writer. Write a brief trends and observations
+section for a PADER report.
+
+Data provided:
+- Total cases in this period: {{ total_cases }}
+
+Requirements:
+1. State the total number of cases received.
+2. Comment on whether any upward or downward trend in case volume is observed.
+3. Note whether the adverse event profile is consistent with previous periods.
+4. State whether any new safety concerns requiring immediate action were identified.
+5. Recommend continued routine monitoring in the next reporting period.
+6. Keep to 2–4 sentences.
+7. Use formal, regulatory-appropriate language.
